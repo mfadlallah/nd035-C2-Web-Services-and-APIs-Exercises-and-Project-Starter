@@ -64,7 +64,7 @@ public class CarService {
         String price = priceClient.getPrice(id);
         car.setPrice(price);
 
-        Location location = mapsClient.getAddress(car.getLocation());
+        Location location = mapsClient.getAddress(car.getId(), car.getLocation());
         car.setLocation(location);
 
         return car;
@@ -129,6 +129,7 @@ public class CarService {
         Car car = optionalCar.orElseThrow(CarNotFoundException::new);
         repository.deleteById(car.getId());
         priceClient.deletePrice(car.getId());
+        mapsClient.deleteAddress(car.getId());
     }
 
 

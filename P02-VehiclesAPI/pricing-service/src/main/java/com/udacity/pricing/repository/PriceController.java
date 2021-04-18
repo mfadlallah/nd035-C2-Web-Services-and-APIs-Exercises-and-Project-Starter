@@ -21,7 +21,7 @@ public class PriceController {
     private PriceRepository repository;
 
     @GetMapping(path = "/prices/{vehicleId}")
-    public ResponseEntity<?> setPrice(@PathVariable Long vehicleId) {
+    public ResponseEntity<?> getPrice(@PathVariable Long vehicleId) {
         Optional<Price> optionalPrice = repository.findById(vehicleId);
         if (optionalPrice.isPresent()) {
             return ResponseEntity.ok(optionalPrice.get());
