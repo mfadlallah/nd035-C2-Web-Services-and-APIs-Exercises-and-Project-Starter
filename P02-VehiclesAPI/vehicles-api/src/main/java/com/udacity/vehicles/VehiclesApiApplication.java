@@ -27,7 +27,7 @@ public class VehiclesApiApplication {
     /**
      * Initializes the car manufacturers available to the Vehicle API.
      * @param repository where the manufacturer information persists.
-     * @return the car manufacturers to add to the related repository
+     * @return the car manufacturers to add to the related com.udacity.repository
      */
     @Bean
     CommandLineRunner initDatabase(ManufacturerRepository repository) {
@@ -62,6 +62,16 @@ public class VehiclesApiApplication {
      */
     @Bean(name="pricing")
     public WebClient webClientPricing(@Value("${pricing.endpoint}") String endpoint) {
+        return WebClient.create(endpoint);
+    }
+
+    /**
+     * Web Client for the order API
+     * @param endpoint where to communicate for the order API
+     * @return created order endpoint
+     */
+    @Bean(name="ordering")
+    public WebClient webClientOrder(@Value("${order.endpoint}") String endpoint) {
         return WebClient.create(endpoint);
     }
 
